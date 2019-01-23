@@ -44,7 +44,11 @@ void MCTSDebugger::Debug() // call before move
         VLOG(1) << "main move path: " << GetMainMovePath();
         int depth = m_engine->GetConfig().debugger().print_tree_depth();
         int width = m_engine->GetConfig().debugger().print_tree_width();
-        PrintTree(depth ? depth : 1, width ? width : 10);
+        if (VLOG_IS_ON(3)) {
+            PrintTree(depth ? depth : 6, width ? width : 6);
+		} else {
+		    PrintTree(depth ? depth : 1, width ? width : 10);
+		}
         VLOG(1) << "model global step: " << m_engine->m_model_global_step;
         VLOG(1) << "========== debug info for " << ith_str << " end   ==========";
     }
